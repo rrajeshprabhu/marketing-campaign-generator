@@ -14,8 +14,13 @@ class AIService:
         self.anthropic_key = os.getenv("ANTHROPIC_API_KEY")
         self.openai_key = os.getenv("OPENAI_API_KEY")
 
+        print(f"[AI Service] OpenAI Key present: {bool(self.openai_key)}")
+        print(f"[AI Service] Anthropic Key present: {bool(self.anthropic_key)}")
+
         self.anthropic = Anthropic(api_key=self.anthropic_key) if self.anthropic_key else None
         self.openai = OpenAI(api_key=self.openai_key) if self.openai_key else None
+
+        print(f"[AI Service] OpenAI client: {self.openai is not None}")
 
     async def generate_campaign_from_website(
         self,
@@ -29,11 +34,15 @@ class AIService:
         context = self._build_context(website_content)
 
         # Generate campaign using available AI
+        print(f"[AI Service] Generating campaign - Anthropic: {self.anthropic is not None}, OpenAI: {self.openai is not None}")
         if self.anthropic:
+            print("[AI Service] Using Claude...")
             return await self._generate_with_claude(context, platforms, campaign_type)
         elif self.openai:
+            print("[AI Service] Using OpenAI...")
             return await self._generate_with_openai(context, platforms, campaign_type)
         else:
+            print("[AI Service] Using fallback templates...")
             # Fallback to template-based generation
             return self._generate_fallback(website_content, platforms, campaign_type)
 
