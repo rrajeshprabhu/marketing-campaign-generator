@@ -13,6 +13,13 @@ export interface CampaignGenerate {
   call_to_action?: string
 }
 
+export interface CampaignFromURL {
+  website_url: string
+  campaign_type: CampaignType
+  platforms: Platform[]
+  generate_images?: boolean
+}
+
 export interface CampaignContent {
   platform: Platform
   headline: string
@@ -20,6 +27,7 @@ export interface CampaignContent {
   hashtags?: string[]
   call_to_action: string
   image_suggestions?: string[]
+  generated_image_url?: string
 }
 
 export interface Campaign {
@@ -29,6 +37,8 @@ export interface Campaign {
   product_name: string
   target_audience: string
   content: CampaignContent[]
+  website_url?: string
+  website_images?: { url: string; alt: string }[]
   created_at: string
   updated_at?: string
 }

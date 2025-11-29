@@ -3,3 +3,8 @@ uvicorn[standard]
 pydantic
 python-dotenv
 httpx
+beautifulsoup4
+lxml
+anthropic
+openai
+aiohttp

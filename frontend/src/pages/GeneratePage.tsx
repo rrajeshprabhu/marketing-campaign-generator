@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { campaignApi } from '../services/api'
-import type { CampaignGenerate, Campaign } from '../types/campaign'
+import type { CampaignGenerate, CampaignFromURL, Campaign } from '../types/campaign'
 
 const PLATFORMS = [
   { id: 'facebook', name: 'Facebook' },

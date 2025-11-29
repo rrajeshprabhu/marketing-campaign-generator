@@ -18,6 +18,12 @@ export default function Layout() {
                   Generate
                 </Link>
                 <Link
+                  to="/generate-from-url"
+                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-700 hover:text-indigo-600"
+                >
+                  From Website
+                </Link>
+                <Link
                   to="/campaigns"
                   className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-700 hover:text-indigo-600"
                 >

@@ -34,6 +34,25 @@ class CampaignGenerate(BaseModel):
     call_to_action: Optional[str] = None
 
 
+class CampaignFromURL(BaseModel):
+    """Request model for generating campaign from website URL"""
+    website_url: str
+    campaign_type: CampaignType = CampaignType.SOCIAL_MEDIA
+    platforms: List[Platform] = [Platform.FACEBOOK, Platform.INSTAGRAM, Platform.TWITTER]
+    generate_images: bool = False
+
+
+class WebsiteAnalysis(BaseModel):
+    """Website analysis result"""
+    brand_name: str
+    tagline: str
+    description: str
+    products_services: List[str]
+    key_features: List[str]
+    images: List[dict]
+    pages_crawled: int
+
+
 class CampaignContent(BaseModel):
     """Generated content for a specific platform"""
     platform: Platform
@@ -42,6 +61,7 @@ class CampaignContent(BaseModel):
     hashtags: Optional[List[str]] = None
     call_to_action: str
     image_suggestions: Optional[List[str]] = None
+    generated_image_url: Optional[str] = None
 
 
 class CampaignCreate(BaseModel):
@@ -59,5 +79,7 @@ class Campaign(BaseModel):
     product_name: str
     target_audience: str
     content: List[CampaignContent]
+    website_url: Optional[str] = None
+    website_images: Optional[List[dict]] = None
     created_at: datetime
     updated_at: Optional[datetime] = None
